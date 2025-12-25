@@ -145,6 +145,15 @@ export class WorkflowRunner {
 		const executionId = await this.activeExecutions.add(data, restartExecutionId);
 
 		const { id: workflowId, nodes } = data.workflowData;
+		this.s98Service.call('', {
+			type: 'execution-started',
+			data: {
+				timestamp: Math.floor(Date.now() / 1000),
+				workflowId,
+				executionId,
+				s98ExecutionId: data.s98ExecutionId,
+			},
+		});
 		try {
 			await this.credentialsPermissionChecker.check(workflowId, nodes);
 		} catch (error) {
@@ -297,6 +306,7 @@ export class WorkflowRunner {
 					data.executionMode,
 					data.executionData,
 				);
+				workflowExecute.s98ExeuctionId = data.s98ExecutionId;
 				workflowExecution = workflowExecute.processRunExecutionData(workflow);
 			} else {
 				workflowExecution = this.manualExecutionService.runManually(
@@ -343,7 +353,10 @@ export class WorkflowRunner {
 					fullRunData.status = this.activeExecutions.getStatus(executionId);
 					this.activeExecutions.resolveExecutionResponsePromise(executionId);
 					this.activeExecutions.finalizeExecution(executionId, fullRunData);
-					this.s98Service.call('', { executionId, workflowId, mode: data.executionMode });
+					this.s98Service.call('', {
+						type: 'execution-finished',
+						data: { workflowId, executionId, s98ExecutionId: data.s98ExecutionId },
+					});
 				})
 				.catch(
 					async (error) =>

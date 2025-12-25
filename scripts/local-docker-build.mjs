@@ -95,10 +95,10 @@ class LocalDockerBuilder {
 		const platformShort = this.platform.split('/').pop(); // amd64 or arm64
 
 		if (this.registry === 'local') {
-			return `${imageName}:${this.version}-${platformShort}`;
+			return `${imageName}:${this.version}`;
 		} else {
 			// For custom registry
-			return `${this.registry}/${imageName}:${this.version}-${platformShort}`;
+			return `${this.registry}/${imageName}:${this.version}`;
 		}
 	}
 

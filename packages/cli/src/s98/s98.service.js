@@ -42,7 +42,6 @@ let S98Service = class S98Service {
 	}
 	async call(url, data) {
 		const baseUrl = this.globalConfig.endpoints.s98BaseUrl;
-		console.log('Called S98Service', this.globalConfig.endpoints, baseUrl);
 		await axios_1.default.post(baseUrl, data);
 	}
 };

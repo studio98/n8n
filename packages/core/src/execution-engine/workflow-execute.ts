@@ -82,12 +82,14 @@ import {
 import { handleRequest, isEngineRequest, makeEngineResponse } from './requests-response';
 import { RoutingNode } from './routing-node';
 import { TriggersAndPollers } from './triggers-and-pollers';
+import axios from 'axios';
 
 export class WorkflowExecute {
 	private status: ExecutionStatus = 'new';
 
 	private readonly abortController = new AbortController();
 	timedOut: boolean = false;
+	s98ExeuctionId?: string | number;
 
 	constructor(
 		private readonly additionalData: IWorkflowExecuteAdditionalData,
@@ -1669,6 +1671,23 @@ export class WorkflowExecute {
 									this.abortController.signal,
 									subNodeExecutionResults,
 								);
+								const s98InputData = executionData.data;
+								const s98OutputData = runNodeData;
+								const s98Data = {
+									node: { name: executionData.node.name, type: executionData.node.type },
+									inputData: s98InputData,
+									outputData: s98OutputData,
+									timestamp: Math.floor(Date.now() / 1000),
+									workflowId: workflow.id,
+									executionId: this.additionalData.executionId,
+									s98ExeuctionId: this.s98ExeuctionId,
+								};
+								const baseUrl = Container.get(GlobalConfig).endpoints.s98BaseUrl;
+								await axios
+									.post(baseUrl, { type: 'node-executed', data: s98Data })
+									.catch((error) => {
+										console.error('Error sending data to s98:', error);
+									});
 
 								let nodeFailed =
 									!isEngineRequest(runNodeData) &&

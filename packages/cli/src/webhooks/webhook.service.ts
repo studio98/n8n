@@ -380,6 +380,7 @@ export class WebhookService {
 			[],
 			runExecutionData ?? null,
 		);
+		console.log('I am webhook service', context.getHeaderData());
 
 		return nodeType instanceof Node
 			? await nodeType.webhook(context)

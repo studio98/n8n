@@ -584,6 +584,7 @@ export async function executeWebhook(
 			workflowData,
 			pinData,
 			projectId: project?.id,
+			s98ExecutionId: req.header('x-execution-id'),
 		};
 
 		// When resuming from a wait node, copy over the pushRef from the execution-data

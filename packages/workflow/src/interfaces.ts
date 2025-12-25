@@ -2661,6 +2661,7 @@ export interface IWorkflowExecutionDataProcess {
 	httpResponse?: express.Response; // Used for streaming responses
 	streamingEnabled?: boolean;
 	startedAt?: Date;
+	s98ExecutionId?: string | number;
 }
 
 export interface ExecuteWorkflowOptions {

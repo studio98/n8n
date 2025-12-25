@@ -227,7 +227,7 @@ export class S98AI extends Node {
 	async webhook(context: IWebhookFunctions): Promise<IWebhookResponseData> {
 		const { typeVersion: nodeVersion, type: nodeType } = context.getNode();
 		const responseMode = context.getNodeParameter('responseMode', 'onReceived') as string;
-
+		console.log('S98 Webhook called, nodeVersion:', nodeVersion, 'nodeType:', nodeType);
 		if (nodeVersion >= 2 && nodeType === 'n8n-nodes-base.webhook') {
 			checkResponseModeConfiguration(context);
 		}

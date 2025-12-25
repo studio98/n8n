@@ -12,7 +12,8 @@ export class S98Service {
 
 	async call(url: string, data: Record<string, any>): Promise<void> {
 		const baseUrl = this.globalConfig.endpoints.s98BaseUrl;
-		console.log('Called S98Service', this.globalConfig.endpoints, baseUrl);
-		await axios.post(baseUrl, data);
+		await axios.post(baseUrl, data).catch((error) => {
+			this.logger.warn(`Failed to call S98 service at ${baseUrl}${url}: ${error.message}`);
+		});
 	}
 }

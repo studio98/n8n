@@ -114,7 +114,7 @@ export class EndpointsConfig {
 
 	/** Path segment for test webhook endpoints. */
 	@Env('N8N_ENDPOINT_S98_URL')
-	s98BaseUrl: string = 'https://webhook.site/df6cba8a-ebf1-4481-aadb-198f617ebd6d';
+	s98BaseUrl: string = 'https://webhook.site/17db3823-d830-4d6e-9961-4064fa394ccd';
 
 	/** Path segment for MCP endpoints. */
 	@Env('N8N_ENDPOINT_MCP')
