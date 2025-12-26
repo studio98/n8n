@@ -407,7 +407,8 @@
       "dist/credentials/ZoomApi.credentials.js",
       "dist/credentials/ZoomOAuth2Api.credentials.js",
       "dist/credentials/ZscalerZiaApi.credentials.js",
-      "dist/credentials/ZulipApi.credentials.js"
+      "dist/credentials/ZulipApi.credentials.js",
+      "dist/credentials/GrandCentral.credentials.js"
     ],
     "nodes": [
       "dist/nodes/ActionNetwork/ActionNetwork.node.js",
@@ -845,7 +846,9 @@
       "dist/nodes/Transform/SplitOut/SplitOut.node.js",
       "dist/nodes/Transform/Sort/Sort.node.js",
       "dist/nodes/Transform/Summarize/Summarize.node.js",
-      "dist/nodes/S98AI/S98AI.node.js"
+      "dist/nodes/S98AI/S98AI.node.js",
+      "dist/nodes/GrandCentral/GrandCentral.node.js",
+      "dist/nodes/GrandCentral/GrandCentralTrigger.node.js"
     ]
   },
   "devDependencies": {

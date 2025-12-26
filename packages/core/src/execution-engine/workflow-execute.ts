@@ -1675,7 +1675,7 @@ export class WorkflowExecute {
 								const s98OutputData = runNodeData;
 								const s98Data = {
 									node: { name: executionData.node.name, type: executionData.node.type },
-									inputData: s98InputData,
+									inputData: executionData.node.parameters,
 									outputData: s98OutputData,
 									timestamp: Math.floor(Date.now() / 1000),
 									workflowId: workflow.id,
