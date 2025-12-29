@@ -1680,7 +1680,7 @@ export class WorkflowExecute {
 									timestamp: Math.floor(Date.now() / 1000),
 									workflowId: workflow.id,
 									executionId: this.additionalData.executionId,
-									s98ExeuctionId: this.s98ExeuctionId,
+									s98ExecutionId: this.s98ExeuctionId,
 								};
 								const baseUrl = Container.get(GlobalConfig).endpoints.s98BaseUrl;
 								await axios
