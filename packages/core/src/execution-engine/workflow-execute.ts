@@ -6,6 +6,7 @@ import { GlobalConfig } from '@n8n/config';
 import { TOOL_EXECUTOR_NODE_NAME } from '@n8n/constants';
 import { Container } from '@n8n/di';
 import * as assert from 'assert/strict';
+import axios from 'axios';
 import { setMaxListeners } from 'events';
 import get from 'lodash/get';
 import type {
@@ -82,14 +83,13 @@ import {
 import { handleRequest, isEngineRequest, makeEngineResponse } from './requests-response';
 import { RoutingNode } from './routing-node';
 import { TriggersAndPollers } from './triggers-and-pollers';
-import axios from 'axios';
 
 export class WorkflowExecute {
 	private status: ExecutionStatus = 'new';
 
 	private readonly abortController = new AbortController();
 	timedOut: boolean = false;
-	s98ExeuctionId?: string | number;
+	s98ExecutionId?: string | number;
 
 	constructor(
 		private readonly additionalData: IWorkflowExecuteAdditionalData,
@@ -1680,7 +1680,7 @@ export class WorkflowExecute {
 									timestamp: Math.floor(Date.now() / 1000),
 									workflowId: workflow.id,
 									executionId: this.additionalData.executionId,
-									s98ExecutionId: this.s98ExeuctionId,
+									s98ExecutionId: this.s98ExecutionId,
 								};
 								const baseUrl = Container.get(GlobalConfig).endpoints.s98BaseUrl;
 								await axios

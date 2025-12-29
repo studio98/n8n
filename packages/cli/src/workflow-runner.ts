@@ -1,4 +1,3 @@
-import { GlobalConfig } from '@n8n/config';
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
@@ -306,7 +305,7 @@ export class WorkflowRunner {
 					data.executionMode,
 					data.executionData,
 				);
-				workflowExecute.s98ExeuctionId = data.s98ExecutionId;
+				workflowExecute.s98ExecutionId = data.s98ExecutionId;
 				workflowExecution = workflowExecute.processRunExecutionData(workflow);
 			} else {
 				workflowExecution = this.manualExecutionService.runManually(
